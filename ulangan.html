@@ -1,0 +1,201 @@
+!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+    <title>LENSA STUDIO</title>
+ 
+    <style>
+        /* =========================
+           PROPERTY CSS
+           ========================= */
+ 
+        /* Font Family */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f6ff; /* Warna background */
+            color: #333;
+        }
+ 
+        /* Header */
+        header {
+            background-color: #2563eb;
+            color: white;
+            text-align: center; /* Text tengah */
+            padding: 25px;
+        }
+ 
+        /* Logo */
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+ 
+        /* Navigasi menggunakan Flexbox */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            background-color: #1e40af;
+            padding: 15px;
+        }
+ 
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+ 
+        nav a:hover {
+            color: yellow;
+        }
+ 
+        /* Garis memanjang */
+        .garis {
+            width: 80%;
+            height: 3px;
+            background-color: #2563eb;
+            margin: 20px auto;
+        }
+ 
+        /* Bagian utama */
+        main {
+            padding: 30px;
+            text-align: center; /* Text tengah */
+        }
+ 
+        h2 {
+            text-align: center;
+            color: #1e40af;
+        }
+ 
+        /* Kisi-kisi / Card menggunakan Flexbox */
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+ 
+        .card {
+            width: 250px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+ 
+        .card img {
+            width: 150px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+ 
+        /* Footer */
+        footer {
+            background-color: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+ 
+<body>
+ 
+    <!-- TAG HTML: HEADER -->
+    <header>
+ 
+        <!-- Menampilkan gambar -->
+        <img  
+             
+        >
+ 
+        <h1>LENSA STUDIO</h1>
+ 
+    </header>
+ 
+    <!-- TAG HTML: NAV -->
+    <nav>
+        <a href="#">Galeri</a>
+        <a href="#">Tentang</a>
+        <a href="#">Layanan</a>
+        <a href="#">Kontak</a>
+    </nav>
+ 
+    <!-- TAG HTML: MAIN -->
+    <main>
+ 
+        <h2>Koleksi Karya Terbaru</h2>
+        <p>Kumpulan hasil jepretan dan berbagai sesi pemotretan</p>
+ 
+        <!-- Garis memanjang -->
+        <div class="garis"></div>
+ 
+        <!-- Flexbox -->
+        <div class="container">
+ 
+            <!-- Card 1 -->
+            <div class="card">
+                <img  
+                    src="assets/img/senja.jpg"
+                    alt="POTRET"
+                >
+ 
+                <h3>POTRET</h3>
+ 
+                <p>
+                    Cahaya senja
+                </p>
+            </div>
+ 
+            <!-- Card 2 -->
+            <div class="card">
+                <img  
+                    src="assets/img/jalan malam.jpg"
+                    alt="KOTA"
+                >
+ 
+                <h3>KOTA</h3>
+ 
+                <p>
+                    Jalanan Malam
+                </p>
+            </div>
+ 
+            <!-- Card 3 -->
+            <div class="card">
+                <img  
+                    src="assets/img/tepi danau.jpg"
+                    alt="ALAM"
+                >
+ 
+                <h3>ALAM</h3>
+ 
+                <p>
+                    Tepi Danau
+                </p>
+            </div>
+ 
+        </div>
+ 
+    </main>
+ 
+    <!-- TAG HTML: FOOTER -->
+    <footer>
+        <p>&copy; 2026 Belajar HTML & CSS. All Rights Reserved.</p>
+    </footer>
+ 
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="id">
+<head>

@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio - Lean Lestari | Student Developer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font-Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        ice: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'spin-slow': 'spin 12s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-12px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(186, 230, 253, 0.6);
+        }
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card-hover:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.85);
+            border-color: rgba(56, 189, 248, 0.8);
+            box-shadow: 0 20px 25px -5px rgba(14, 165, 233, 0.15), 0 8px 10px -6px rgba(14, 165, 233, 0.1);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #4338ca 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-mesh {
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(186, 230, 253, 0.5) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(224, 242, 254, 0.6) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(240, 249, 255, 0.8) 0px, transparent 50%);
+        }
+    </style>
+</head>
+<body class="bg-mesh text-slate-700 antialiased min-h-screen selection:bg-sky-200 selection:text-sky-900">
+
+    <!-- Background Floating Light Effects -->
+    <div class="fixed top-20 left-10 w-72 h-72 bg-sky-200/40 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-slow"></div>
+    <div class="fixed bottom-20 right-10 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-slow"></div>
+
+    <!-- NAVBAR -->
+    <header class="fixed top-0 left-0 w-full z-50 px-4 sm:px-8 py-4">
+        <nav class="max-w-7xl mx-auto glass-card rounded-2xl px-6 py-3 flex justify-between items-center shadow-lg shadow-sky-900/5 transition-all">
+            <!-- Brand Logo -->
+            <a href="#beranda" class="flex items-center gap-2 group">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-500 to-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-sky-400/40 group-hover:scale-105 transition-transform">
+                    L
+                </div>
+                <span class="text-xl font-extrabold tracking-tight text-slate-800">Lean<span class="text-sky-500">.</span></span>
+            </a>
+
+            <!-- Desktop Menu Nav Links -->
+            <div class="hidden md:flex items-center space-x-1 text-sm font-medium text-slate-600">
+                <a href="#beranda" class="px-4 py-2 rounded-xl hover:text-sky-600 hover:bg-sky-50/80 transition">Beranda</a>
+                <a href="#tentang" class="px-4 py-2 rounded-xl hover:text-sky-600 hover:bg-sky-50/80 transition">Tentang</a>
+                <a href="#portfolio" class="px-4 py-2 rounded-xl hover:text-sky-600 hover:bg-sky-50/80 transition">Portfolio</a>
+                <a href="#pendidikan" class="px-4 py-2 rounded-xl hover:text-sky-600 hover:bg-sky-50/80 transition">Pendidikan</a>
+                <a href="#pengalaman" class="px-4 py-2 rounded-xl hover:text-sky-600 hover:bg-sky-50/80 transition">Pengalaman</a>
+                <a href="#blog" class="px-4 py-2 rounded-xl hover:text-sky-600 hover:bg-sky-50/80 transition">Blog</a>
+            </div>
+
+            <!-- CTA Header Button -->
+            <div class="hidden md:block">
+                <a href="#kontak" class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-xs font-semibold text-sky-700 rounded-xl group bg-gradient-to-br from-sky-400 to-blue-600 group-hover:from-sky-400 group-hover:to-blue-600 hover:text-white shadow-md shadow-sky-200 transition duration-300">
+                    <span class="relative px-5 py-2.5 transition-all ease-in duration-200 bg-white rounded-[10px] group-hover:bg-opacity-0 font-medium">
+                        Hubungi Saya <i class="fa-solid fa-arrow-right ml-1 text-xs"></i>
+                    </span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="menu-btn" aria-label="Toggle Navigation Menu" class="md:hidden p-2 rounded-xl text-slate-600 hover:bg-sky-100/50 focus:outline-none">
+                <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+            </button>
+        </nav>
+
+        <!-- Mobile Dropdown Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden max-w-7xl mx-auto mt-2 glass-card rounded-2xl p-5 shadow-xl border border-sky-100">
+            <div class="flex flex-col space-y-3 font-medium text-slate-600">
+                <a href="#beranda" class="mobile-link px-4 py-2 rounded-xl hover:bg-sky-50 text-slate-700">Beranda</a>
+                <a href="#tentang" class="mobile-link px-4 py-2 rounded-xl hover:bg-sky-50 text-slate-700">Tentang Saya</a>
+                <a href="#portfolio" class="mobile-link px-4 py-2 rounded-xl hover:bg-sky-50 text-slate-700">Portfolio</a>
+                <a href="#pendidikan" class="mobile-link px-4 py-2 rounded-xl hover:bg-sky-50 text-slate-700">Pendidikan</a>
+                <a href="#pengalaman" class="mobile-link px-4 py-2 rounded-xl hover:bg-sky-50 text-slate-700">Pengalaman</a>
+                <a href="#blog" class="mobile-link px-4 py-2 rounded-xl hover:bg-sky-50 text-slate-700">Blog</a>
+                <a href="#kontak" class="mobile-link px-4 py-2.5 rounded-xl bg-sky-500 text-white text-center font-semibold shadow-md shadow-sky-200">Hubungi Saya</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION / BERANDA -->
+    <section id="beranda" class="pt-36 pb-20 px-6 max-w-7xl mx-auto min-h-screen flex items-center">
+        <div class="grid md:grid-cols-12 gap-12 items-center w-full">
+            
+            <!-- Hero Text Details (Left) -->
+            <div class="md:col-span-7 space-y-6">
+                <!-- Status Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-sky-300/80 shadow-sm">
+                    <span class="relative flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+                    </span>
+                    <span class="text-xs font-semibold tracking-wide text-sky-800">Available for Projects & Collaboration</span>
+                </div>
+
+                <!-- Main Title Heading -->
+                <div class="space-y-2">
+                    <p class="text-slate-500 font-medium text-lg">Halo semua 👋, saya</p>
+                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
+                        <span class="text-gradient">Lean Lestari</span>
+                    </h1>
+                    <p class="text-xl sm:text-2xl font-semibold text-sky-700/90 pt-1">
+                        Siswa Rekayasa Perangkat Lunak (RPL)
+                    </p>
+                </div>
+
+                <!-- Bio Description -->
+                <p class="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl">
+                    Bersekolah di <strong class="text-slate-800">SMK Negeri 1 Rongga</strong>, berdomisili di Bandung Barat. Berfokus pada pengembangan aplikasi web modern, antarmuka pengguna yang bersih, dan logika pemrograman yang terstruktur.
+                </p>
+
+                <!-- Call To Actions & Social Media -->
+                <div class="pt-4 flex flex-wrap items-center gap-4">
+                    <a href="#kontak" class="px-7 py-3.5 rounded-2xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white font-semibold shadow-lg shadow-sky-300/50 hover:shadow-sky-400/60 hover:-translate-y-0.5 transition duration-300 flex items-center gap-2">
+                        <i class="fa-regular fa-paper-plane"></i> Hubungi Saya
+                    </a>
+                    <a href="#portfolio" class="px-7 py-3.5 rounded-2xl glass-card text-slate-700 font-semibold hover:bg-white hover:text-sky-600 hover:-translate-y-0.5 transition duration-300 border border-sky-200">
+                        Lihat Portfolio
+                    </a>
+                </div>
+
+                <!-- Social Icons Bar -->
+                <div class="pt-6 flex items-center gap-4 text-slate-500">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Ikuti Saya:</span>
+                    <a href="https://github.com" target="_blank" rel="noopener" aria-label="GitHub Profile" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center hover:text-sky-600 hover:border-sky-400 hover:scale-110 transition duration-300">
+                        <i class="fa-brands fa-github text-lg"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn Profile" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center hover:text-sky-600 hover:border-sky-400 hover:scale-110 transition duration-300">
+                        <i class="fa-brands fa-linkedin-in text-lg"></i>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram Profile" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center hover:text-sky-600 hover:border-sky-400 hover:scale-110 transition duration-300">
+                        <i class="fa-brands fa-instagram text-lg"></i>
+                    </a>
+                    <a href="mailto:leanlestari@example.com" aria-label="Email Lean Lestari" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center hover:text-sky-600 hover:border-sky-400 hover:scale-110 transition duration-300">
+                        <i class="fa-regular fa-envelope text-lg"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Visual Frame (Right Avatar Card) -->
+            <div class="md:col-span-5 flex justify-center relative">
+                <!-- Glowing Aura Layer -->
+                <div class="absolute inset-0 bg-gradient-to-tr from-sky-400 to-indigo-400 rounded-3xl blur-2xl opacity-40 scale-95 animate-pulse-slow"></div>
+
+                <!-- Floating Badge 1: Tech Stack Tag -->
+                <div class="absolute -top-4 -left-4 z-20 glass-card p-3 rounded-2xl shadow-xl flex items-center gap-3 animate-float border border-sky-200">
+                    <div class="w-10 h-10 rounded-xl bg-sky-100 flex items-center justify-center text-sky-600 font-bold">
+                        <i class="fa-solid fa-code text-lg"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400 font-semibold">Fokus Utama</p>
+                        <p class="text-xs font-bold text-slate-800">Web Developer</p>
+                    </div>
+                </div>
+
+                <!-- Floating Badge 2: School Tag -->
+                <div class="absolute -bottom-4 -right-4 z-20 glass-card p-3 rounded-2xl shadow-xl flex items-center gap-3 animate-float-delayed border border-sky-200">
+                    <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600 font-bold">
+                        <i class="fa-solid fa-graduation-cap text-lg"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400 font-semibold">Pendidikan</p>
+                        <p class="text-xs font-bold text-slate-800">SMKN 1 Rongga</p>
+                    </div>
+                </div>
+
+                <!-- Avatar Profile Frame -->
+                <div class="relative z-10 w-72 h-80 sm:w-80 sm:h-96 glass-card rounded-3xl p-3 shadow-2xl border border-sky-200/90 flex flex-col justify-between">
+                    <div class="w-full h-full rounded-2xl bg-gradient-to-b from-sky-100/80 to-sky-200/50 overflow-hidden relative group">
+                        <img src="assets/img/Lean.jpg" alt="Lean Lestari" onerror="this.onerror=null; this.src='https://placehold.co/400x500/e0f2fe/0284c7?text=Lean+Lestari';" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-sky-950/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
+                            <span class="text-white text-xs font-medium">Lean Lestari • RPL SMKN 1 Rongga</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- TENTANG SAYA -->
+    <section id="tentang" class="py-24 px-6 relative">
+        <div class="max-w-7xl mx-auto space-y-16">
+            <div class="text-center space-y-3">
+                <span class="text-xs font-bold tracking-widest text-sky-600 uppercase bg-sky-100 px-3.5 py-1.5 rounded-full border border-sky-200">Mengenal Lebih Dekat</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Tentang Saya</h2>
+                <p class="text-slate-500 max-w-xl mx-auto text-sm sm:text-base">Siswa aktif jurusan Rekayasa Perangkat Lunak dengan semangat belajar yang tinggi.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                <!-- Deskripsi Utama Card -->
+                <div class="glass-card p-8 rounded-3xl space-y-5 border border-sky-200 shadow-sm flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-500/10 flex items-center justify-center text-sky-600 text-xl font-bold">
+                            <i class="fa-solid fa-user-astronaut"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800">Developer Muda & Pembelajar</h3>
+                        <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                            Saya adalah seorang siswa di <strong>SMK Negeri 1 Rongga</strong> yang berdedikasi tinggi dalam bidang <strong>Rekayasa Perangkat Lunak (RPL)</strong>. Tertarik pada bagaimana kode program dapat diubah menjadi aplikasi fungsional yang bermanfaat bagi pengguna.
+                        </p>
+                        <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                            Fokus utama saya saat ini meliputi pembuatan antarmuka web yang responsif, logika pemrograman backend, serta manajemen basis data.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-sky-100 flex items-center justify-between text-xs font-semibold text-slate-500">
+                        <span><i class="fa-solid fa-location-dot text-sky-500 mr-1"></i> Bandung Barat, Jawa Barat</span>
+                        <span><i class="fa-solid fa-check-circle text-sky-500 mr-1"></i> RPL Specialist</span>
+                    </div>
+                </div>
+
+                <!-- Tech Stack & Skills Card -->
+                <div class="glass-card p-8 rounded-3xl space-y-6 border border-sky-200 shadow-sm">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-600 text-xl font-bold">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-800">Spesialisasi & Tech Stack</h3>
+
+                    <div class="space-y-4">
+                        <!-- Tech Item 1 -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold text-slate-700 mb-1.5">
+                                <span>Frontend (HTML5, CSS3, JavaScript, Tailwind)</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-sky-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-sky-400 to-sky-600 rounded-full w-[85%]"></div>
+                            </div>
+                        </div>
+
+                        <!-- Tech Item 2 -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold text-slate-700 mb-1.5">
+                                <span>Backend Basic (PHP & Laravel Framework)</span>
+                                <span>70%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-sky-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-sky-400 to-blue-600 rounded-full w-[70%]"></div>
+                            </div>
+                        </div>
+
+                        <!-- Tech Item 3 -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold text-slate-700 mb-1.5">
+                                <span>Database (MySQL / MariaDB)</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-sky-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full w-[75%]"></div>
+                            </div>
+                        </div>
+
+                        <!-- Tech Item 4 -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold text-slate-700 mb-1.5">
+                                <span>Tools (VS Code, Git & GitHub)</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-sky-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-sky-400 to-indigo-600 rounded-full w-[80%]"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-sky-100/80 text-sky-800 rounded-lg text-xs font-semibold">HTML5</span>
+                        <span class="px-3 py-1 bg-sky-100/80 text-sky-800 rounded-lg text-xs font-semibold">Tailwind CSS</span>
+                        <span class="px-3 py-1 bg-sky-100/80 text-sky-800 rounded-lg text-xs font-semibold">JavaScript</span>
+                        <span class="px-3 py-1 bg-sky-100/80 text-sky-800 rounded-lg text-xs font-semibold">PHP</span>
+                        <span class="px-3 py-1 bg-sky-100/80 text-sky-800 rounded-lg text-xs font-semibold">Laravel</span>
+                        <span class="px-3 py-1 bg-sky-100/80 text-sky-800 rounded-lg text-xs font-semibold">MySQL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO SECTION -->
+    <section id="portfolio" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="space-y-16">
+            <div class="text-center space-y-3">
+                <span class="text-xs font-bold tracking-widest text-sky-600 uppercase bg-sky-100 px-3.5 py-1.5 rounded-full border border-sky-200">Hasil Karya</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Project Terbaru</h2>
+                <p class="text-slate-500 max-w-xl mx-auto text-sm sm:text-base">Beberapa hasil project sekolah dan latihan mandiri yang telah dikembangkan.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Project Card 1 -->
+                <div class="glass-card rounded-3xl overflow-hidden glass-card-hover border border-sky-200 flex flex-col justify-between">
+                    <div>
+                        <div class="h-48 bg-gradient-to-br from-sky-200 to-blue-300 relative overflow-hidden flex items-center justify-center">
+                            <i class="fa-solid fa-calculator text-5xl text-sky-600/60"></i>
+                            <span class="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-sky-700 shadow-sm">Web App</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="text-xl font-bold text-slate-800">E-Treasurer</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Aplikasi kas bendahara adalah perangkat lunak digital untuk mencatat, mengelola, dan melaporkan keuangan kelompok 
+                                secara otomatis, transparan, dan akurat sebagai pengganti buku kas manual.
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 pt-2">
+                                <span class="text-[11px] font-semibold bg-sky-50 text-sky-700 px-2.5 py-1 rounded-md">PHP</span>
+                                <span class="text-[11px] font-semibold bg-sky-50 text-sky-700 px-2.5 py-1 rounded-md">MySQL</span>
+                                <span class="text-[11px] font-semibold bg-sky-50 text-sky-700 px-2.5 py-1 rounded-md">Bootstrap</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="#" class="inline-flex items-center gap-2 text-sm font-bold text-sky-600 hover:text-sky-700 transition">
+                            Lihat Detail <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="glass-card rounded-3xl overflow-hidden glass-card-hover border border-sky-200 flex flex-col justify-between">
+                    <div>
+                        <div class="h-48 bg-gradient-to-br from-blue-200 to-indigo-300 relative overflow-hidden flex items-center justify-center">
+                            <i class="fa-solid fa-school text-5xl text-blue-600/60"></i>
+                            <span class="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-blue-700 shadow-sm">Landing Page</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="text-xl font-bold text-slate-800">Website Profile Sekolah</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Desain portal informasi sekolah responsif yang menampilkan profil jurusan RPL, daftar guru, serta agenda berita sekolah.
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 pt-2">
+                                <span class="text-[11px] font-semibold bg-sky-50 text-sky-700 px-2.5 py-1 rounded-md">HTML5</span>
+                                <span class="text-[11px] font-semibold bg-sky-50 text-sky-700 px-2.5 py-1 rounded-md">Tailwind CSS</span>
+                                <span class="text-[11px] font-semibold bg-sky-50 text-sky-700 px-2.5 py-1 rounded-md">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="#" class="inline-flex items-center gap-2 text-sm font-bold text-sky-600 hover:text-sky-700 transition">
+                            Lihat Detail <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="glass-card rounded-3xl overflow-hidden glass-card-hover border border-sky-200 flex flex-col justify-between">
+                    <div>
+                        <div class="h-48 bg-gradient-to-br from-sky-100 to-sky-300 relative overflow-hidden flex items-center justify-center">
+                            <i class="fa-solid fa-address-card text-5xl text-sky-700/60"></i>
+                            <span class="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-sky-800 shadow-sm">Personal Web</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="text-xl font-bold text-slate-800">Portofolio Pribadi Estetis</h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                Website portofolio pribadi modern dan interaktif berkonsep *soft sky blue* yang dibangun dengan performa tinggi.
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 pt-2">
+                                <span class="text-[11px] font-semibold bg-sky-50 text-sky-700 px-2.5 py-1 rounded-md">Tailwind CSS</span>
+                                <span class="text-[11px] font-semibold bg-sky-50 text-sky-700 px-2.5 py-1 rounded-md">Glassmorphism</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="#" class="inline-flex items-center gap-2 text-sm font-bold text-sky-600 hover:text-sky-700 transition">
+                            Lihat Detail <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PENDIDIKAN & PENGALAMAN -->
+    <section id="pendidikan" class="py-24 px-6 relative">
+        <div class="max-w-7xl mx-auto space-y-16">
+            
+            <!-- Education Heading -->
+            <div class="text-center space-y-3">
+                <span class="text-xs font-bold tracking-widest text-sky-600 uppercase bg-sky-100 px-3.5 py-1.5 rounded-full border border-sky-200">Langkah Akademis</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Riwayat Pendidikan</h2>
+            </div>
+
+            <!-- Education Timeline Cards -->
+            <div class="max-w-3xl mx-auto space-y-5">
+                <!-- SMKN 1 Rongga -->
+                <div class="glass-card p-6 rounded-3xl border border-sky-200 flex items-center justify-between shadow-sm hover:border-sky-400 transition">
+                    <div class="flex items-center gap-5">
+                        <div class="w-16 h-16 rounded-2xl bg-white border border-sky-200 flex items-center justify-center p-2 shadow-sm shrink-0">
+                            <img src="assets/img/SMK.jpg" alt="SMKN 1 Rongga" onerror="this.onerror=null; this.src='https://placehold.co/100x100/e0f2fe/0284c7?text=SMKN1';" class="w-full h-full object-contain">
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-800">SMK Negeri 1 Rongga</h3>
+                            <p class="text-sky-600 font-semibold text-xs sm:text-sm">Rekayasa Perangkat Lunak (RPL)</p>
+                            <p class="text-slate-400 text-xs mt-1"><i class="fa-regular fa-calendar mr-1"></i> Saat Ini (Siswa Aktif)</p>
+                        </div>
+                    </div>
+                    <span class="text-xs font-bold px-3.5 py-1.5 bg-sky-500 text-white rounded-full shadow-md shadow-sky-300">Aktif</span>
+                </div>
+
+                <!-- SMPN 4 Gununghalu -->
+                <div class="glass-card p-6 rounded-3xl border border-sky-200 flex items-center justify-between shadow-sm hover:border-sky-300 transition">
+                    <div class="flex items-center gap-5">
+                        <div class="w-16 h-16 rounded-2xl bg-white border border-sky-200 flex items-center justify-center p-2 shadow-sm shrink-0">
+                            <img src="assets/img/SMP.png" alt="SMPN 4 Gununghalu" onerror="this.onerror=null; this.src='https://placehold.co/100x100/e0f2fe/0284c7?text=SMPN4';" class="w-full h-full object-contain">
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-800">SMP Negeri 4 Gununghalu</h3>
+                            <p class="text-slate-500 text-xs sm:text-sm">Sekolah Menengah Pertama</p>
+                        </div>
+                    </div>
+                    <span class="text-xs font-semibold px-3.5 py-1.5 bg-slate-200 text-slate-700 rounded-full">Lulus</span>
+                </div>
+
+                <!-- SDN Cisitu -->
+                <div class="glass-card p-6 rounded-3xl border border-sky-200 flex items-center justify-between shadow-sm hover:border-sky-300 transition">
+                    <div class="flex items-center gap-5">
+                        <div class="w-16 h-16 rounded-2xl bg-white border border-sky-200 flex items-center justify-center p-2 shadow-sm shrink-0">
+                            <img src="assets/img/SD.jpg" alt="SDN Cisitu" onerror="this.onerror=null; this.src='https://placehold.co/100x100/e0f2fe/0284c7?text=SDN';" class="w-full h-full object-contain">
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-800">SD Negeri Cisitu</h3>
+                            <p class="text-slate-500 text-xs sm:text-sm">Sekolah Dasar</p>
+                        </div>
+                    </div>
+                    <span class="text-xs font-semibold px-3.5 py-1.5 bg-slate-200 text-slate-700 rounded-full">Lulus</span>
+                </div>
+            </div>
+
+            <!-- PENGALAMAN SECTION -->
+            <div id="pengalaman" class="pt-12 space-y-12">
+                <div class="text-center space-y-3">
+                    <span class="text-xs font-bold tracking-widest text-sky-600 uppercase bg-sky-100 px-3.5 py-1.5 rounded-full border border-sky-200">Aktivitas & Praktik</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Pengalaman Praktik</h2>
+                </div>
+
+                <div class="max-w-3xl mx-auto">
+                    <div class="glass-card p-8 rounded-3xl border border-sky-200 shadow-sm relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-2 h-full bg-sky-500"></div>
+                        <div class="flex justify-between items-start flex-wrap gap-2">
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-800">Student Developer & Praktikum Sekolah</h3>
+                                <p class="text-sky-600 font-medium text-sm">SMK Negeri 1 Rongga</p>
+                            </div>
+                            <span class="text-xs font-semibold px-3 py-1 bg-sky-100 text-sky-800 rounded-lg">Praktik Keahlian</span>
+                        </div>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed mt-4">
+                            Aktif mengikuti pembelajaran praktis pemrograman web terstruktur, merancang basis data relasional MySQL, serta mengembangkan proyek-proyek sistem informasi tingkat sekolah.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- BLOG / CATATAN BELAJAR -->
+    <section id="blog" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="space-y-16">
+            <div class="text-center space-y-3">
+                <span class="text-xs font-bold tracking-widest text-sky-600 uppercase bg-sky-100 px-3.5 py-1.5 rounded-full border border-sky-200">Wawasan & Jurnal</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Blog & Catatan Belajar</h2>
+                <p class="text-slate-500 max-w-xl mx-auto text-sm sm:text-base">Artikel singkat seputar pembelajaran teknologi dan pemrograman.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Blog Card 1 -->
+                <div class="glass-card p-8 rounded-3xl border border-sky-200 space-y-4 glass-card-hover flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2 text-xs text-slate-400 font-semibold">
+                            <span><i class="fa-regular fa-calendar mr-1"></i> 2026</span>
+                            <span>•</span>
+                            <span>Pemrograman Web</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">Belajar Dasar HTML & CSS untuk Pemula</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Langkah awal memahami struktur halaman web dan cara mempercantik tampilan menggunakan Tailwind CSS secara efisien.
+                        </p>
+                    </div>
+                    <a href="#" class="inline-flex items-center gap-2 text-xs font-bold text-sky-600 hover:text-sky-700">
+                        Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Blog Card 2 -->
+                <div class="glass-card p-8 rounded-3xl border border-sky-200 space-y-4 glass-card-hover flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2 text-xs text-slate-400 font-semibold">
+                            <span><i class="fa-regular fa-calendar mr-1"></i> 2026</span>
+                            <span>•</span>
+                            <span>Dunia SMK</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">Pengenalan Dasar Jurusan RPL di SMKN 1 Rongga</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Ulasan mengenai kompetensi yang dipelajari dan keahlian penting yang wajib dikuasai siswa RPL untuk siap kerja.
+                        </p>
+                    </div>
+                    <a href="#" class="inline-flex items-center gap-2 text-xs font-bold text-sky-600 hover:text-sky-700">
+                        Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KONTAK SECTION -->
+    <section id="kontak" class="py-24 px-6 relative">
+        <div class="max-w-7xl mx-auto space-y-16">
+            <div class="text-center space-y-3">
+                <span class="text-xs font-bold tracking-widest text-sky-600 uppercase bg-sky-100 px-3.5 py-1.5 rounded-full border border-sky-200">Kontak</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Mari Terkoneksi</h2>
+                <p class="text-slate-500 max-w-xl mx-auto text-sm sm:text-base">Punya pertanyaan atau ingin berkolaborasi? Jangan ragu untuk menghubungi saya!</p>
+            </div>
+
+            <div class="max-w-xl mx-auto glass-card p-8 sm:p-10 rounded-3xl border border-sky-200 text-center space-y-6 shadow-xl">
+                <div class="w-16 h-16 rounded-2xl bg-sky-500/10 text-sky-600 text-2xl font-bold flex items-center justify-center mx-auto">
+                    <i class="fa-regular fa-paper-plane"></i>
+                </div>
+                
+                <div class="space-y-2">
+                    <h3 class="text-2xl font-bold text-slate-800">Lean Lestari</h3>
+                    <p class="text-slate-500 text-sm"><i class="fa-solid fa-location-dot text-sky-500 mr-1"></i> Bandung Barat, Jawa Barat</p>
+                    <p class="text-sky-600 font-semibold text-base">📧 leanlestari@example.com</p>
+                </div>
+
+                <div class="pt-4 flex flex-col sm:flex-row gap-3">
+                    <a href="mailto:leanlestari@example.com" class="flex-1 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white font-semibold py-3.5 px-6 rounded-2xl shadow-lg shadow-sky-300/50 hover:shadow-sky-400/60 transition duration-300">
+                        Kirim Email
+                    </a>
+                    <a href="https://wa.me/" target="_blank" rel="noopener" class="flex-1 glass-card border border-sky-300 hover:bg-white text-slate-700 font-semibold py-3.5 px-6 rounded-2xl transition duration-300">
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-sky-200/60 py-8 px-6 text-center text-sm text-slate-500 bg-white/50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>&copy; 2026 <strong class="text-slate-800">Lean Lestari</strong>. All rights reserved.</p>
+            <p class="text-xs text-slate-400">Dibuat dengan <i class="fa-solid fa-heart text-sky-500"></i> & Tailwind CSS (SMKN 1 Rongga)</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT -->
+    <script>
+        // Mobile Menu Toggle Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            }
+        });
+
+        // Close mobile menu when clicking any item
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+    </script>
+</body>
+</html>

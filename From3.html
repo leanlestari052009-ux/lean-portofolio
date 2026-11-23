@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Data Siswa</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#5a57d6',
+                        'primary-hover': '#4b48c6',
+                        'bg-main': '#f0f3f9',
+                        'card-border': '#e2e8f0',
+                        danger: '#ef4444',
+                        'danger-hover': '#dc2626'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f0f3f9;
+            font-family: 'Inter', sans-serif;
+            color: #334155;
+        }
+        
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            opacity: 0.6;
+        }
+        input[type="date"]::-webkit-calendar-picker-indicator:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 min-h-screen">
+    <div class="max-w-6xl mx-auto space-y-6">
+
+        
+        <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+            
+            <div class="flex items-center gap-3 mb-6 pb-2 border-b border-slate-100">
+                <i class="fa-solid fa-user-plus text-primary text-xl"></i>
+                <h2 id="form-title" class="text-lg font-bold text-slate-800">Tambah Data Siswa</h2>
+            </div>
+
+            
+            <form id="student-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                <input type="hidden" id="editing-index" value="-1">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                    
+                    <div class="space-y-4">
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1.5" for="nis">NIS</label>
+                            <input type="text" id="nis" required placeholder="Masukkan NIS"
+                                class="w-full px-3.5 py-2 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary text-sm transition">
+                        </div>
+
+                        >
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1.5" for="nama">Nama Lengkap</label>
+                            <input type="text" id="nama" required placeholder="Masukkan nama lengkap"
+                                class="w-full px-3.5 py-2 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary text-sm transition">
+                        </div>
+
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1.5" for="kelas">Kelas</label>
+                            <select id="kelas" required
+                                class="w-full px-3.5 py-2 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary text-sm bg-white text-slate-600 transition">
+                                <option value="" disabled selected hidden>Pilih kelas</option>
+                                <option value="X RPL 1">X RPL 1</option>
+                                <option value="X RPL 2">X RPL 2</option>
+                                <option value="X RPL 3">X RPL 3</option>
+                                <option value="XI RPL 1">XI RPL 1</option>
+                                <option value="XI RPL 2">XI RPL 2</option>
+                                <option value="XII RPL 1">XII RPL 1</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    
+                    <div class="space-y-4">
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Jenis Kelamin</label>
+                            <div class="flex items-center gap-6 pt-1">
+                                <label class="inline-flex items-center gap-2 cursor-pointer text-sm font-semibold text-slate-700">
+                                    <input type="radio" name="jenis_kelamin" value="Laki-laki" checked
+                                        class="w-4 h-4 text-primary focus:ring-primary border-slate-300">
+                                    <span>Laki-laki</span>
+                                </label>
+                                <label class="inline-flex items-center gap-2 cursor-pointer text-sm font-semibold text-slate-700">
+                                    <input type="radio" name="jenis_kelamin" value="Perempuan"
+                                        class="w-4 h-4 text-primary focus:ring-primary border-slate-300">
+                                    <span>Perempuan</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1.5" for="tanggal_lahir">Tanggal Lahir</label>
+                            <div class="relative">
+                                <input type="date" id="tanggal_lahir" required
+                                    class="w-full px-3.5 py-2 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary text-sm text-slate-600 transition">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="flex items-center gap-3 pt-4">
+                    <button type="submit" id="btn-submit"
+                        class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary-hover text-white text-sm font-semibold rounded-lg transition shadow-sm cursor-pointer">
+                        <i class="fa-solid fa-plus" id="submit-icon"></i>
+                        <span id="submit-label">Simpan</span>
+                    </button>
+                    <button type="button" onclick="resetForm()"
+                        class="inline-flex items-center gap-2 px-4 py-2.5 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-sm font-semibold rounded-lg transition cursor-pointer">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        <span>Reset</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        
+        <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+            <!-- Header Card & Search -->
+            <div class="p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-list-ul text-primary text-xl"></i>
+                    <h2 class="text-lg font-bold text-slate-800">Data Siswa</h2>
+                </div>
+                
+                <div class="relative w-full md:w-72">
+                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                        <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                    </div>
+                    <input type="text" id="search-input" oninput="handleSearch()" placeholder="Cari nama atau NIS..."
+                        class="w-full pl-9 pr-3.5 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 focus:bg-white transition">
+                </div>
+            </div>
+
+            
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-sm">
+                    <thead>
+                        <tr class="bg-slate-50/80 text-slate-700 border-b border-slate-200/80">
+                            <th class="py-3 px-4 font-bold w-12">No</th>
+                            <th class="py-3 px-4 font-bold">NIS</th>
+                            <th class="py-3 px-4 font-bold">Nama Lengkap</th>
+                            <th class="py-3 px-4 font-bold">Kelas</th>
+                            <th class="py-3 px-4 font-bold">Jenis Kelamin</th>
+                            <th class="py-3 px-4 font-bold">Tanggal Lahir</th>
+                            <th class="py-3 px-4 font-bold text-center w-28">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body" class="divide-y divide-slate-100">
+                        
+                    </tbody>
+                </table>
+            </div>
+
+            
+            <div class="p-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-100 bg-white">
+                <p id="pagination-info" class="text-sm font-medium text-slate-600">
+                    Menampilkan 1 - 5 dari 5 data
+                </p>
+                <div class="flex items-center gap-1.5">
+                    <button class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 text-slate-400 hover:text-slate-600 hover:bg-slate-50 disabled:opacity-50 transition cursor-pointer" disabled>
+                        <i class="fa-solid fa-chevron-left text-xs"></i>
+                    </button>
+                    <button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-white text-xs font-bold shadow-sm">
+                        1
+                    </button>
+                    <button class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-200 text-slate-400 hover:text-slate-600 hover:bg-slate-50 disabled:opacity-50 transition cursor-pointer" disabled>
+                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    
+    <div id="toast" class="fixed bottom-5 right-5 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-3 text-sm z-50">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-green-400"></i>
+        <span id="toast-message">Pesan notifikasi</span>
+    </div>
+
+    <script>
+        
+        let students = [
+            { nis: "001", nama: "Andi Setiawan", kelas: "X RPL 1", jk: "Laki-laki", tgl: "2008-01-15" },
+            { nis: "002", nama: "Budi Santoso", kelas: "X RPL 1", jk: "Laki-laki", tgl: "2008-03-22" },
+            { nis: "003", nama: "Citra Lestari", kelas: "X RPL 2", jk: "Perempuan", tgl: "2008-07-10" },
+            { nis: "004", nama: "Deni Pratama", kelas: "X RPL 2", jk: "Laki-laki", tgl: "2008-09-05" },
+            { nis: "005", nama: "Eka Wijaya", kelas: "X RPL 3", jk: "Perempuan", tgl: "2008-11-18" }
+        ];
+
+        // Render Table Data
+        function renderTable(filterKeyword = "") {
+            const tbody = document.getElementById("table-body");
+            tbody.innerHTML = "";
+
+            const filteredStudents = students.filter(student => {
+                const keyword = filterKeyword.toLowerCase();
+                return student.nama.toLowerCase().includes(keyword) || student.nis.toLowerCase().includes(keyword);
+            });
+
+            if (filteredStudents.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="py-8 text-center text-slate-400 text-sm">
+                            Tidak ada data siswa ditemukan.
+                        </td>
+                    </tr>
+                `;
+            } else {
+                filteredStudents.forEach((student, index) => {
+                    // Find actual original index in students array for edit/delete functions
+                    const originalIndex = students.indexOf(student);
+
+                    const row = document.createElement("tr");
+                    row.className = "hover:bg-slate-50/60 transition text-slate-700";
+                    row.innerHTML = `
+                        <td class="py-3.5 px-4 font-normal text-slate-600">${index + 1}</td>
+                        <td class="py-3.5 px-4 font-medium text-slate-700">${escapeHtml(student.nis)}</td>
+                        <td class="py-3.5 px-4 font-medium text-slate-800">${escapeHtml(student.nama)}</td>
+                        <td class="py-3.5 px-4 font-normal text-slate-700">${escapeHtml(student.kelas)}</td>
+                        <td class="py-3.5 px-4 font-normal text-slate-700">${escapeHtml(student.jk)}</td>
+                        <td class="py-3.5 px-4 font-normal text-slate-700">${escapeHtml(student.tgl)}</td>
+                        <td class="py-3.5 px-4 text-center">
+                            <div class="flex items-center justify-center gap-2">
+                                <button onclick="editStudent(${originalIndex})" title="Edit" 
+                                    class="w-7 h-7 bg-primary hover:bg-primary-hover text-white rounded flex items-center justify-center transition shadow-xs cursor-pointer">
+                                    <i class="fa-solid fa-pen text-xs"></i>
+                                </button>
+                                <button onclick="deleteStudent(${originalIndex})" title="Hapus" 
+                                    class="w-7 h-7 bg-danger hover:bg-danger-hover text-white rounded flex items-center justify-center transition shadow-xs cursor-pointer">
+                                    <i class="fa-solid fa-trash-can text-xs"></i>
+                                </button>
+                            </div>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            }
+
+            // Update Pagination Text
+            const total = filteredStudents.length;
+            const paginationInfo = document.getElementById("pagination-info");
+            if (total > 0) {
+                paginationInfo.textContent = `Menampilkan 1 - ${total} dari ${total} data`;
+            } else {
+                paginationInfo.textContent = `Menampilkan 0 data`;
+            }
+        }
+
+        // Handle Add/Edit Form Submission
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            const nis = document.getElementById("nis").value.trim();
+            const nama = document.getElementById("nama").value.trim();
+            const kelas = document.getElementById("kelas").value;
+            const jk = document.querySelector('input[name="jenis_kelamin"]:checked').value;
+            const tgl = document.getElementById("tanggal_lahir").value;
+            const editIndex = parseInt(document.getElementById("editing-index").value);
+
+            if (editIndex === -1) {
+                // Check if NIS already exists
+                const nisExists = students.some(s => s.nis === nis);
+                if (nisExists) {
+                    showToast("NIS sudah terdaftar!", "error");
+                    return;
+                }
+
+                // Add new student
+                students.push({ nis, nama, kelas, jk, tgl });
+                showToast("Data siswa berhasil ditambahkan!", "success");
+            } else {
+                // Update existing student
+                students[editIndex] = { nis, nama, kelas, jk, tgl };
+                showToast("Data siswa berhasil diperbarui!", "success");
+            }
+
+            resetForm();
+            renderTable(document.getElementById("search-input").value);
+        }
+
+        // Edit Student Trigger
+        function editStudent(index) {
+            const student = students[index];
+            document.getElementById("nis").value = student.nis;
+            document.getElementById("nama").value = student.nama;
+            document.getElementById("kelas").value = student.kelas;
+            document.getElementById("tanggal_lahir").value = student.tgl;
+
+            // Set Radio Button
+            const radioButtons = document.querySelectorAll('input[name="jenis_kelamin"]');
+            radioButtons.forEach(radio => {
+                radio.checked = (radio.value === student.jk);
+            });
+
+            // Change UI for Edit Mode
+            document.getElementById("editing-index").value = index;
+            document.getElementById("form-title").textContent = "Edit Data Siswa";
+            document.getElementById("submit-label").textContent = "Update";
+            document.getElementById("submit-icon").className = "fa-solid fa-check";
+
+            // Scroll to top smooth
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Delete Student
+        function deleteStudent(index) {
+            const studentName = students[index].nama;
+            students.splice(index, 1);
+            showToast(`Data ${studentName} berhasil dihapus!`, "success");
+            renderTable(document.getElementById("search-input").value);
+            
+            // Reset form if editing item that was just deleted
+            if (parseInt(document.getElementById("editing-index").value) === index) {
+                resetForm();
+            }
+        }
+
+        // Reset Form
+        function resetForm() {
+            document.getElementById("student-form").reset();
+            document.getElementById("editing-index").value = "-1";
+            document.getElementById("form-title").textContent = "Tambah Data Siswa";
+            document.getElementById("submit-label").textContent = "Simpan";
+            document.getElementById("submit-icon").className = "fa-solid fa-plus";
+            // Set default gender radio
+            document.querySelector('input[name="jenis_kelamin"][value="Laki-laki"]').checked = true;
+        }
+
+        // Handle Search Realtime
+        function handleSearch() {
+            const keyword = document.getElementById("search-input").value;
+            renderTable(keyword);
+        }
+
+        // Toast Notification Helper
+        function showToast(message, type = "success") {
+            const toast = document.getElementById("toast");
+            const toastMsg = document.getElementById("toast-message");
+            const toastIcon = document.getElementById("toast-icon");
+
+            toastMsg.textContent = message;
+            if (type === "success") {
+                toastIcon.className = "fa-solid fa-circle-check text-green-400";
+            } else {
+                toastIcon.className = "fa-solid fa-circle-exclamation text-red-400";
+            }
+
+            toast.classList.remove("translate-y-20", "opacity-0");
+            toast.classList.add("translate-y-0", "opacity-100");
+
+            setTimeout(() => {
+                toast.classList.remove("translate-y-0", "opacity-100");
+                toast.classList.add("translate-y-20", "opacity-0");
+            }, 3000);
+        }
+
+        
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;")
+                       .replace(/</g, "&lt;")
+                       .replace(/>/g, "&gt;")
+                       .replace(/"/g, "&quot;")
+                       .replace(/'/g, "&#039;");
+        }
+
+        
+        window.onload = function() {
+            renderTable();
+        };
+    </script>
+</body>
+</html>
